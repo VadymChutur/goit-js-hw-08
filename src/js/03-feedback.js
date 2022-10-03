@@ -15,12 +15,14 @@ refs.form.addEventListener('input', throttle(onInputField, 500));
 populateMessageOutput();
 
 function onInputField(evt) {
-  formData[evt.target.name] = evt.target.value;
+  const { name, value } = evt.target;
+  formData[name] = value;
   localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
 }
 
 function onFormSubmit(evt) {
   evt.preventDefault();
+  console.log(formData);
   evt.currentTarget.reset();
   localStorage.removeItem(STORAGE_KEY);
 }
